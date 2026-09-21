@@ -1,45 +1,78 @@
-html,body{
-margin: 0px;
-padding: 0px;
-min-height:100vh;
-background-color:#eeeeee;
-font-family: 'Montserrat', sans-serif;
-font-size: 16px;
-text-align:center;
-overflow: hidden;
-overflow:scroll;
+html,body {
+    margin: 0px;
+    padding: 0px;
+    min-height:100vh;
+    background-color:#eeeeee;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    text-align:center;
+    overflow: hidden;
+    overflow:scroll;
 }
 
 .box {
 	background-color: #cccccc;
-	padding: 0.5rem;
-	border-radius: 0.5rem;
-	display: flex;
-	flex-direction: column;
+	padding: 1rem;
+	border-radius: 1rem;
+	display: grid;
+	gap: 0.5rem;
+	grid-template-areas: "h h v"
+	                     "d d v"
+						 "i b v";
+	grid-template-rows: 3rem 1fr 3.5rem;
+	grid-template-columns: 2fr 0.5fr 3fr;
+	& p {
+	    text-align: left;
+		margin: 0;
+	}
+	& .header {
+	    grid-area: h;
+		font-size: 2rem;
+	}
+	& .detail {
+	    grid-area: d;
+	}
+	& input {
+	    grid-area: i;
+		font-size: 1rem;
+	}
+	& button {
+	    grid-area: b;
+	}
+	& iframe {
+	    grid-area: v;
+	}
 }
 
 iframe {
-	min-width: 30rem;
+	/*min-width: 30rem;*/
 	/* width: 100%; */
-	aspect-ratio: calc(16/9);
+	width: 100%;
+	aspect-ratio: 16 / 9;
+	border-radius: 0.5rem;
 }
 
 .container {
 	display: flex;
 	width: calc(100vw - 4rem);
-	align-items: stretch;
+	align-items: center;
 	justify-content: center;
 	gap: 2rem;
 	padding: 2rem;
+	flex-direction: column;
 }
 
 @media only screen and (max-width: 69rem) {
-	.container {
-		flex-direction: column;
-	}
-
 	iframe {
 		min-width: none;
+	}
+	.box {
+	    grid-template-columns: 3fr 1fr;
+		grid-template-rows: 3rem 2rem 2rem 3fr;
+    	grid-template-areas: "h h"
+    	                     "d d"
+    						 "i b"
+                             "v v";
 	}
 }
 
@@ -51,7 +84,7 @@ button {
 	background-color: white;
 	border: none;
 	color: black;
-	padding: 15px 32px;
+	padding: 3px 32px;
 	text-align: center;
 	cursor: pointer;
 	border-radius: 4px;
